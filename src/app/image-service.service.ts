@@ -6,10 +6,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ImageService {
+  alphabet: string = 'abcdefghijklmnopqrstuvwxyz';
+
   constructor(private http: HttpClient) {}
 
   getPageLink(): Observable<any> {
-    return this.http.get('https://prnt.sc/image/uf2910', {
+    var url: string =
+      'https://prnt.sc/image/' +
+      this.alphabet.charAt(Math.floor(Math.random() * 25)) +
+      this.alphabet.charAt(Math.floor(Math.random() * 25)) +
+      Math.floor(1000 + Math.random() * 9000);
+
+    console.log('URL: ' + url);
+
+    return this.http.get(url, {
       responseType: 'text',
     });
   }
